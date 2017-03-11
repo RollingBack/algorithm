@@ -1,10 +1,5 @@
 #-*- coding: utf-8 -*-
-
-def is_prime(x):
-    for i in range(2, x):
-        if x%i == 0:
-            return False
-    return True
+from euler import is_prime
 
 count = 0
 for x in range(2, 10000000):

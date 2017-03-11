@@ -1,13 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# n^2+an+b
-def is_prime(x):
-    for y in range(2, x):
-        if x%y == 0:
-            return False
-    return True
-
 from itertools import count
+from euler import is_prime
+
 
 def get_max_prime_num(a, b):
     for i in count():
