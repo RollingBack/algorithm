@@ -30,3 +30,23 @@ print(sum1)
 
 
 
+from euler import is_prime
+import re
+n, f = 11, 1
+tp = []
+
+def is_trunc(n):
+    for d in range(1, len(str(n))):
+        if not is_prime(str(n)[d:]) or not is_prime(str(n)[:d]):
+            return False
+    return True
+
+while len(tp) < 11:
+    # n += 3-f    # fast count for prime candidates
+    # f = -f
+    if not (n > 100 and re.search('[245680]', str(n))):
+        if is_prime(n) and is_trunc(n):
+            tp.append(n)
+    n += 1
+
+print ("Project Euler 37 Solution =", sum(tp),  tp)
