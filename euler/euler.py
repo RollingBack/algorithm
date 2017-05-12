@@ -62,3 +62,14 @@ class CircularPrime():
         result = self.x
         self.x += 1
         return result
+
+def pollard(x):
+    l = []
+    for i in range(2, x+1):
+        while x != i:
+            if x%i == 0:
+                x = x/i
+                l.append(i)
+            else:
+                break
+    return l
