@@ -5,7 +5,7 @@
 # @Email    : lackgod@hotmail.com
 # @File    : euler.py
 # @Software: PyCharm
-
+from math import sqrt
 def is_prime(x):
     for i in range(2, int(x/2)+1):
         if x%i == 0:
@@ -63,13 +63,28 @@ class CircularPrime():
         self.x += 1
         return result
 
-def pollard(x):
-    l = []
+def trial_division(x):
+    if x < 2:
+        return []
+    prime_factors = []
+    for p in prime_sieve(int(sqrt(x))):
+        if p*p > x:
+            break
+        while x % p == 0:
+            prime_factors.append(p)
+            x // p
+    if n > 1:
+        prime_factors.append(x)
+    return prime_factors
+
+def prime_sieve(x):
     for i in range(2, x+1):
-        while x != i:
-            if x%i == 0:
-                x = x/i
-                l.append(i)
-            else:
-                break
-    return l
+        if is_prime(i):
+            yield i
+
+def gcd(x, y):
+    while y != 0:
+        y, x = x % y, y
+    return x
+        
+    
