@@ -67,15 +67,13 @@ def trial_division(x):
     if x < 2:
         return []
     prime_factors = []
-    for p in prime_sieve(int(sqrt(x))):
-        if p*p > x:
-            break
-        while x % p == 0:
-            prime_factors.append(p)
-            x // p
-    if n > 1:
-        prime_factors.append(x)
+    for y in prime_sieve(int(sqrt(x))):
+        a, b = divmod(x, y)
+        if b == 0:
+            prime_factors.append(a)
+            x = a
     return prime_factors
+
 
 def prime_sieve(x):
     for i in range(2, x+1):
