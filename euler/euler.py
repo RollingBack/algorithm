@@ -7,6 +7,10 @@
 # @Software: PyCharm
 from math import sqrt
 def is_prime(x):
+    if x < 2:
+        return False
+    if x == 2:
+        return True
     for i in range(2, int(x/2)+1):
         if x%i == 0:
             return False
@@ -68,10 +72,15 @@ def trial_division(x):
         return []
     prime_factors = []
     for y in prime_sieve(int(sqrt(x))):
-        a, b = divmod(x, y)
-        if b == 0:
-            prime_factors.append(a)
-            x = a
+        while True:
+            remain, mod = divmod(x, y)
+            if mod == 0:
+                prime_factors.append(y)
+                x = remain
+            else:
+                break
+    if x != 1:
+        prime_factors.append(x)
     return prime_factors
 
 
@@ -85,4 +94,18 @@ def gcd(x, y):
         y, x = x % y, y
     return x
         
-    
+class PrimeList(dict):
+    def __init__(self, x):
+        super().__init__(self)
+        for i in range(x+1):
+            if is_prime(i):
+                self[i] = True
+            else:
+                self[i] = False
+
+    def __missing__(self, key):
+        if is_prime(key):
+            self[key] = True
+        else:
+            self[key] = False
+        return self[key]
