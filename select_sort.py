@@ -5,13 +5,24 @@ from double_link_list import DoubleLinkList
 import sys
 sys.setrecursionlimit(1000000)
 
-def selectSort(arr):
-    length = len(arr)
+def bubble_sort(t):
+    length = len(t)
     for i in range(length):
-        for j in range(i+1, length):
-            if arr[j] < arr[i]:
-                arr[j], arr[i] = arr[i], arr[j]
-    return arr
+        for j in range(length-i-1):
+            if t[j] > t[j+1]:
+                t[j], t[j+1] = t[j+1], t[j]
+    return t
+
+
+def select_sort(t):
+    length = len(t)
+    for i in range(length):
+        biggest = 0
+        for j in range(length-i):
+            if t[j] > t[biggest]:
+                biggest = j
+        t[length-i-1], t[biggest] = t[biggest], t[length-i-1]
+    return t
 
 def insertSort(arr):
     length = len(arr)
