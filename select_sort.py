@@ -94,11 +94,27 @@ def mergeSort(L):
     right = mergeSort(L[mid:])
     return merge(left, right)
     
-
+def kadane(array):
+    max_sum = 0
+    max_left = 0
+    max_right = 0
+    current_max = 0
+    left = 0
+    for i in range(0, len(array)):
+        current_max += array[i]
+        if current_max > max_sum:
+            max_sum = current_max
+            right = i
+            max_left = left
+            max_right = right
+        if current_max < 0:
+            current_max = 0
+            left = i + 1
+    return max_left, max_right, max_sum
     
     
     
-a = [x for x in range(10)]    
+a = [x for x in range(10)]
 shuffle(a)
 #print(a[0])
 #d = DoubleLinkList(a)
@@ -107,4 +123,3 @@ shuffle(a)
 #a.sort()   
 #shellSort(a)
 print(mergeSort(a))
-        
